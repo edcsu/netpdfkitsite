@@ -128,13 +128,19 @@
     @apply font-sans;
   }
 }
-/* rehype-pretty-code renders both Shiki themes into data attributes; swap per color scheme. */
+/* Shiki emits both themes as custom properties; swap per color scheme.
+   Applies to MDX (rehype-pretty-code) and to landing-page samples highlighted
+   directly with shiki — both produce the same `--shiki-*` variables. */
+.shiki,
+.shiki span,
 code[data-theme],
 code[data-theme] span {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
 
+.dark .shiki,
+.dark .shiki span,
 .dark code[data-theme],
 .dark code[data-theme] span {
   color: var(--shiki-dark);
