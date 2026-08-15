@@ -1,0 +1,19 @@
+---
+title: "Rendering"
+description: "Render pages to PNG bytes with PDFium for previews, thumbnails, and visual testing."
+order: 6
+source: "docs/guides/rendering.md"
+---
+Render pages to PNG bytes via [PDFtoImage](https://github.com/sungaila/PDFtoImage) (PDFium):
+
+```csharp
+using var doc = PdfFile.Open("report.pdf");
+byte[] png = doc.RenderPage(0, dpi: 150);
+File.WriteAllBytes("page1.png", png);
+
+var allPages = doc.RenderAllPages(dpi: 96);
+```
+
+- Page indexes are 0-based.
+- `dpi` controls output resolution; 96 is screen resolution, 150–300 suits print previews and thumbnails at higher fidelity.
+- Rendering is also handy for visual testing of [fluent layouts](/docs/fluent-layout) together with `DebugOverlay()`.
