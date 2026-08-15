@@ -18,7 +18,7 @@ const withMDX = createMDX({
   options: {
     // remark-frontmatter parses the YAML block so it is not rendered as content;
     // lib/docs.ts reads the same block with gray-matter for titles and descriptions.
-    remarkPlugins: [["remark-frontmatter", {}], ["remark-gfm", {}]],
+    remarkPlugins: [["remark-frontmatter", ["yaml"]], ["remark-gfm", {}]],
     rehypePlugins: [["rehype-slug", {}], ["rehype-pretty-code", prettyCodeOptions]],
   },
 });
