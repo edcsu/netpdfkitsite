@@ -4,7 +4,7 @@ import { CodeBlock } from "@/components/code-block";
 import { InstallCommand } from "@/components/install-command";
 import { Button } from "@/components/ui/button";
 import { samples } from "@/content/samples";
-import { GITHUB_URL, NUGET_URL, TARGET_FRAMEWORKS } from "@/lib/site";
+import { GITHUB_URL, NETPDF_VERSION, NUGET_URL, TARGET_FRAMEWORKS } from "@/lib/site";
 
 export function Hero() {
   const featured = samples[0];
@@ -21,7 +21,7 @@ export function Hero() {
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
             <span className="size-1.5 rounded-full bg-primary" />
-            {TARGET_FRAMEWORKS.join(" · ")} · Windows, macOS, Linux
+            v{NETPDF_VERSION} · {TARGET_FRAMEWORKS.join(" · ")} · Windows, macOS, Linux
           </p>
 
           <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">

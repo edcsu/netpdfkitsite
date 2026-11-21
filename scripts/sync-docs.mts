@@ -3,17 +3,39 @@
  *
  *   npm run sync-docs                 # reads ../netpdf/docs/guides
  *   NETPDF_REPO=/path/to/netpdf npm run sync-docs
+ *   NETPDF_REF=v1.0.0 npm run sync-docs   # read the guides from a tag or commit
  *
  * The generated files are committed, so the site builds without the netpdf
  * checkout present. Re-running against an unchanged checkout is a no-op.
  */
 
-import { readFile, writeFile } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
+import { mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { docsFlat } from "../content/docs/nav.ts";
 
 const REPO = process.env.NETPDF_REPO ?? path.resolve(import.meta.dirname, "../../netpdf");
-const SOURCE_DIR = path.join(REPO, "docs/guides");
+const REF = process.env.NETPDF_REF;
+
+// With NETPDF_REF set, read the guides from that tag/commit. We export them to a
+// temp folder, so the library checkout's branch and files are left alone.
+let SOURCE_DIR = path.join(REPO, "docs/guides");
+if (REF) {
+  const exportDir = await mkdtemp(path.join(tmpdir(), "netpdf-docs-"));
+  const archive = spawnSync("git", ["-C", REPO, "archive", REF, "docs/guides"], { maxBuffer: 64 * 1024 * 1024 });
+  if (archive.status !== 0) {
+    console.error(`✗ git archive failed for ref "${REF}": ${archive.stderr}`);
+    process.exit(1);
+  }
+  const untar = spawnSync("tar", ["-x", "-C", exportDir], { input: archive.stdout });
+  if (untar.status !== 0) {
+    console.error(`✗ could not unpack docs for ref "${REF}"`);
+    process.exit(1);
+  }
+  SOURCE_DIR = path.join(exportDir, "docs/guides");
+  console.log(`Using docs from ${REF}\n`);
+}
 const OUT_DIR = path.resolve(import.meta.dirname, "../content/docs");
 const API_BASE = "https://edcsu.github.io/netpdf/api/";
 

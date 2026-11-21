@@ -80,6 +80,12 @@ export const docsNav: DocSection[] = [
           "PDF/A conformance, tagged (accessible) PDF, XMP metadata, and right-to-left text.",
       },
       {
+        slug: "fonts",
+        title: "Fonts",
+        description:
+          "How NetPdf finds fonts: your registered fonts, then system fonts, then a bundled Liberation Sans.",
+      },
+      {
         slug: "architecture",
         title: "Architecture",
         description:
