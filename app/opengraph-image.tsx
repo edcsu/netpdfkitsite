@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/lib/site";
+import { NETPDF_VERSION, siteConfig, TARGET_FRAMEWORKS } from "@/lib/site";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -22,7 +22,9 @@ export default function OpenGraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 30 }}>
           <div style={{ width: 14, height: 14, borderRadius: 999, background: "#8b7cf6" }} />
-          <span style={{ color: "#a9a5b8" }}>{siteConfig.package} · net8.0 · net9.0 · net10.0</span>
+          <span style={{ color: "#a9a5b8" }}>
+            {siteConfig.package} {NETPDF_VERSION} · {TARGET_FRAMEWORKS.join(" · ")}
+          </span>
         </div>
 
         <div style={{ display: "flex", fontSize: 84, fontWeight: 700, marginTop: 32, letterSpacing: -2 }}>
