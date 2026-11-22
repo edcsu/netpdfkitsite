@@ -7,6 +7,7 @@ const resources = [
   { href: "/docs", label: "Documentation" },
   { href: API_REFERENCE_URL, label: "API reference" },
   { href: "/previewer", label: "Previewer" },
+  { href: "/releases", label: "Releases" },
 ];
 
 const project = [

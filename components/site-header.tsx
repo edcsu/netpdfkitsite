@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/docs", label: "Docs" },
   { href: "/previewer", label: "Previewer" },
+  { href: "/releases", label: "Releases" },
 ];
 
 export function SiteHeader() {
