@@ -3,7 +3,7 @@
  *
  *   npm run sync-docs                 # reads ../netpdf/docs/guides
  *   NETPDF_REPO=/path/to/netpdf npm run sync-docs
- *   NETPDF_REF=v1.0.0 npm run sync-docs   # read the guides from a tag or commit
+ *   NETPDF_REF=v1.1.0 npm run sync-docs   # read the guides from a tag or commit
  *
  * The generated files are committed, so the site builds without the netpdf
  * checkout present. Re-running against an unchanged checkout is a no-op.

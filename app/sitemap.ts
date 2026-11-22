@@ -3,7 +3,7 @@ import { docsFlat } from "@/content/docs/nav";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/docs", "/previewer", ...docsFlat.map((doc) => `/docs/${doc.slug}`)];
+  const routes = ["", "/docs", "/previewer", "/releases", ...docsFlat.map((doc) => `/docs/${doc.slug}`)];
 
   return routes.map((route) => ({
     url: `${siteConfig.url}${route}`,
